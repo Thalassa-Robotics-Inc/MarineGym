@@ -21,7 +21,7 @@
 >
 > 🚀 **Collaborate with us on Underwater Embodied AI!**
 >
-> We are actively seeking research partners in the field of Underwater Embodied Intelligence and Reinforcement Learning. If you are interested in leveraging MarineGym for your next project, please contact us at:
+> We are actively seeking research partners in the field of Underwater Embodied Intelligence and Reinforcement Learning. If you are interested in leveraging MarineGym for your project, please contact us at:
 >
 > 📮 **Email**: zjuoyh@163.com
 
