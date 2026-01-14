@@ -17,6 +17,14 @@
 - Flexibility:  Ensure compatibility with existing RL frameworks and offer user-friendly APIs to facilitate seamless integration and usage.
 - Evaluation: Assesses and contrasts various RL strategies through multiple tasks.
 
+> [!TIP]
+>
+> 🚀 **Collaborate with us on Underwater Embodied AI!**
+>
+> We are actively seeking research partners in the field of Underwater Embodied Intelligence and Reinforcement Learning. If you are interested in leveraging MarineGym for your next project, please contact us at:
+>
+> 📮 **Email**: zjuoyh@163.com
+
 ## Installation
 
 To install MarineGym, we recommend reading one of the following guides:
