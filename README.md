@@ -56,17 +56,14 @@ where `task` specifies the training scenario, which can be `Hover`, `Track`, or 
 If you build on this work, please cite our paper:
 
 ```bibtex
-@online{chu_2025_MarineGymHighPerformanceReinforcement,
-        title = {MarineGym: A High-Performance Reinforcement Learning Platform for Underwater Robotics},
-        shorttitle = {MarineGym},
-        author = {Chu, Shuguang and Huang, Zebin and Li, Yutong and Lin, Mingwei and Carlucho, Ignacio and Petillot, Yvan R. and Yang, Canjun},
-        date = {2025-03-12},
-        eprint = {2503.09203},
-        eprinttype = {arXiv},
-        eprintclass = {cs},
-        doi = {10.48550/arXiv.2503.09203},
-        pubstate = {prepublished}
-        }
+@inproceedings{chu2025marinegym,
+  title={MarineGym: A high-performance reinforcement learning platform for underwater robotics},
+  author={Chu, Shuguang and Huang, Zebin and Li, Yutong and Lin, Mingwei and Li, Dejun and Carlucho, Ignacio and Petillot, Yvan R and Yang, Canjun},
+  booktitle={2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={17146--17153},
+  year={2025},
+  organization={IEEE}
+}
 ```
 
 ## Acknowledgement
