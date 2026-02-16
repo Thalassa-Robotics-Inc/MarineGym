@@ -43,7 +43,7 @@ def require_sim_initialized(func):
 
     @functools.wraps(func)
     def _func(*args, **kwargs):
-        if SimulationContext.instance()._physics_sim_view is None:
+        if SimulationContext.instance().physics_sim_view is None:
             raise RuntimeError("SimulationContext not initialzed.")
         return func(*args, **kwargs)
 

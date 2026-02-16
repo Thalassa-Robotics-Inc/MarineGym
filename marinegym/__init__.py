@@ -1,6 +1,12 @@
 import os
 
 import torch
+
+# Isaac Sim / bundled torch may not expose ForkingPickler; tensordict needs it.
+if not getattr(torch.multiprocessing.reductions, "ForkingPickler", None):
+    from multiprocessing.reduction import ForkingPickler
+    torch.multiprocessing.reductions.ForkingPickler = ForkingPickler
+
 from isaacsim import SimulationApp
 from tensordict import TensorDict
 

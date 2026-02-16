@@ -78,7 +78,7 @@ class RobotBase(abc.ABC):
             raise RuntimeError("The SimulationContext is not created.")
 
         self.cfg = cfg
-        self.device = SimulationContext.instance()._device
+        self.device = SimulationContext.instance().device
         self.dt = SimulationContext.instance().get_physics_dt()
         self.gravity = SimulationContext.instance().get_physics_context().get_gravity()
         self.state_spec: TensorSpec
@@ -99,7 +99,7 @@ class RobotBase(abc.ABC):
         orientations=None,
         prim_paths: Sequence[str] = None
     ):
-        if SimulationContext.instance()._physics_sim_view is not None:
+        if SimulationContext.instance().physics_sim_view is not None:
             raise RuntimeError(
                 "Cannot spawn robots after simulation_context.reset() is called."
             )
@@ -161,7 +161,7 @@ class RobotBase(abc.ABC):
         self,
         prim_paths_expr: str = None,
     ):
-        if SimulationContext.instance()._physics_sim_view is None:
+        if SimulationContext.instance().physics_sim_view is None:
             raise RuntimeError(
                 f"Cannot initialize {self.__class__.__name__} before the simulation context resets."
                 "Call simulation_context.reset() first."

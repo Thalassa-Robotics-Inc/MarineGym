@@ -1,0 +1,388 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (5, 5, 5)
+                double3 target = (-3.978038431995401e-8, -3.978038254359717e-8, 7.956076863990802e-8)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./BlueROV.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "BlueROV"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "BlueROV" (
+    prepend apiSchemas = ["PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
+)
+{
+    bool physxArticulation:enabledSelfCollisions = 0
+    int physxArticulation:solverPositionIterationCount = 32
+    int physxArticulation:solverVelocityIterationCount = 16
+    quatd xformOp:orient = (1, 0, 0, 0)
+    double3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Xform "base_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 11.2
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/base_link/visuals>
+        )
+        {
+        }
+
+        def PhysicsRevoluteJoint "rotor_0_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_0>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (0.1355, -0.1, -0.0725)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.9238795, 0, 0, 0.38268346)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+
+        def PhysicsRevoluteJoint "rotor_1_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_1>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (0.1355, 0.1, -0.0725)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.9238795, 0, 0, -0.38268346)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+
+        def PhysicsRevoluteJoint "rotor_2_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_2>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (-0.1475, -0.1, -0.0725)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.38268343, 0, 0, 0.9238795)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+
+        def PhysicsRevoluteJoint "rotor_3_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_3>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (-0.1475, 0.1, -0.0725)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.38268343, 0, 0, -0.9238795)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+
+        def PhysicsRevoluteJoint "rotor_4_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_4>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (0.0025, -0.1105, -0.005)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.70710677, 0, -0.70710677, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+
+        def PhysicsRevoluteJoint "rotor_5_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </BlueROV/base_link>
+            rel physics:body1 = </BlueROV/rotor_5>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            point3f physics:localPos0 = (0.0025, 0.1105, -0.005)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.70710677, 0, -0.70710677, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0
+            float physxJoint:maxJointVelocity = 3.4028235e38
+        }
+    }
+
+    def PhysicsFixedJoint "root_joint"
+    {
+        rel physics:body1 = </BlueROV/base_link>
+    }
+
+    def Xform "rotor_0" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.9238795042037964, 0, 0, 0.3826834559440613)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.1354999989271164, -0.10000000149011612, -0.07249999791383743)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_0/visuals>
+        )
+        {
+        }
+    }
+
+    def Xform "rotor_1" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.9238795042037964, 0, 0, -0.3826834559440613)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.1354999989271164, 0.10000000149011612, -0.07249999791383743)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_1/visuals>
+        )
+        {
+        }
+    }
+
+    def Xform "rotor_2" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.3826834261417389, 0, 0, 0.9238795042037964)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-0.14749999344348907, -0.10000000149011612, -0.07249999791383743)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_2/visuals>
+        )
+        {
+        }
+    }
+
+    def Xform "rotor_3" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.3826834261417389, 0, 0, -0.9238795042037964)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-0.14749999344348907, 0.10000000149011612, -0.07249999791383743)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_3/visuals>
+        )
+        {
+        }
+    }
+
+    def Xform "rotor_4" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.7071067690849304, 0, -0.7071067690849304, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.0024999999441206455, -0.11050000041723251, -0.004999999888241291)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_4/visuals>
+        )
+        {
+        }
+    }
+
+    def Xform "rotor_5" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float physics:mass = 0.01
+        quatd xformOp:orient = (0.7071067690849304, 0, -0.7071067690849304, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.0024999999441206455, 0.11050000041723251, -0.004999999888241291)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            prepend references = @./instanceable_meshes.usd@</BlueROV/rotor_5/visuals>
+        )
+        {
+        }
+    }
+}
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                token omni:rtx:background:source:texture:textureMode = "repeatMirrored"
+                token omni:rtx:background:source:type = "domeLight"
+                bool omni:rtx:dlss:frameGeneration = 0
+                string omni:rtx:material:db:rtSensorNameToIdMap = "DefaultMaterial:0;AsphaltStandardMaterial:1;AsphaltWeatheredMaterial:2;VegetationGrassMaterial:3;WaterStandardMaterial:4;GlassStandardMaterial:5;FiberGlassMaterial:6;MetalAlloyMaterial:7;MetalAluminumMaterial:8;MetalAluminumOxidizedMaterial:9;PlasticStandardMaterial:10;RetroMarkingsMaterial:11;RetroSignMaterial:12;RubberStandardMaterial:13;SoilClayMaterial:14;ConcreteRoughMaterial:15;ConcreteSmoothMaterial:16;OakTreeBarkMaterial:17;FabricStandardMaterial:18;PlexiGlassStandardMaterial:19;MetalSilverMaterial:20"
+                bool omni:rtx:material:db:syncLoads = 1
+                bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
+                bool omni:rtx:post:registeredCompositing:invertToneMap = 1
+                bool omni:rtx:pt:lightcache:cached:dontResolveConflicts = 1
+                int omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                int omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                bool omni:rtx:rt:lightcache:spatialCache:dontResolveConflicts = 1
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                bool omni:rtx:scene:hydra:mdlMaterialWarmup = 1
+                uint omni:rtx:viewTile:limit = 4294967295
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1280, 720)
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        prepend apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars"
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+        }
+    }
+}
+
