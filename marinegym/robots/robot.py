@@ -1,4 +1,4 @@
-# MIT License
+clear# MIT License
 #
 # Copyright (c) 2023 Botian Xu, Tsinghua University
 #

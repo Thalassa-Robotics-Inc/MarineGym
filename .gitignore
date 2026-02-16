@@ -1,3 +1,5 @@
 marinegym/robots/assets/usd/BlueROV/Props/instanceable_meshes.usda
 marinegym/robots/assets/usd/BlueROV/fixed_usd/BlueROV/instanceable_meshes.usda
 marinegym/robots/assets/usd/BlueROV/Props/instanceable_meshes.usda
+marinegym.egg-info/
+marinegym/__pycache__/
