@@ -4,7 +4,6 @@ from typing import Type, Dict
 import torch
 import torch.distributions as D
 import yaml
-from functorch import vmap
 from tensordict.nn import make_functional
 from torchrl.data import BoundedTensorSpec, CompositeSpec, UnboundedContinuousTensorSpec
 from tensordict import TensorDict
@@ -21,9 +20,6 @@ from marinegym.utils.torch import (
 
 from dataclasses import dataclass
 from collections import defaultdict
-
-import pprint
-import torch.distributions as D
 
 @dataclass
 class UnderwaterVehicleCfg(RobotCfg):
@@ -83,8 +79,8 @@ class UnderwaterVehicle(RobotBase):
                 shape=self.shape,
             )
             self.base_link.initialize()
-            print(self._view.dof_names)
-            print(self._view._dof_indices)
+            logging.debug("DOF names: %s", self._view.dof_names)
+            logging.debug("DOF indices: %s", self._view._dof_indices)
             rotor_joint_indices = [
                 i for i, dof_name in enumerate(self._view._dof_names) 
                 if dof_name.startswith("rotor")
@@ -172,7 +168,7 @@ class UnderwaterVehicle(RobotBase):
     def apply_action(self, actions: torch.Tensor) -> torch.Tensor:
         rotor_cmds = actions.expand(*self.shape, self.num_rotors)        
         last_throttle = self.throttle.clone()
-        thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+        thrusts, moments = torch.vmap(torch.vmap(self.rotors, randomness="different"), randomness="same")(
             rotor_cmds, self.rotor_params
         )
 
@@ -266,7 +262,7 @@ class UnderwaterVehicle(RobotBase):
     def calculate_buoyancy(self, rpy):
         buoyancy = torch.zeros(*self.shape, 6, device=self.device)
         buoyancy.squeeze_(dim=1)
-        buoyancyForce = 997 * 9.8 * self.volumes[:,0,0]
+        buoyancyForce = 997 * 9.81 * self.volumes[:,0,0]
         dis = self.coBMs[:,0,0]
         buoyancy[:, 0] = buoyancyForce * torch.sin(rpy[:,1])
         buoyancy[:, 1] = -buoyancyForce * torch.sin(rpy[:,0]) * torch.cos(rpy[:,1])

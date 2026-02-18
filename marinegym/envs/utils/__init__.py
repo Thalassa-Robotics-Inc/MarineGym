@@ -22,7 +22,7 @@
 
 
 from typing import Dict, Any, Sequence, Union
-import omni.isaac.core.utils.prims as prim_utils
+import isaacsim.core.utils.prims as prim_utils  # type:ignore
 import omni.physx.scripts.utils as script_utils
 # import omni.kit.commands
 import omni.usd.commands
@@ -32,7 +32,7 @@ import torch
 import marinegym.utils.kit as kit_utils
 
 def attach_payload(parent_path):
-    from omni.isaac.core import objects
+    from isaacsim.core.api import objects  # type:ignore
     import omni.physx.scripts.utils as script_utils
     from pxr import UsdPhysics
 

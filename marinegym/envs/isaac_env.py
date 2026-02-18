@@ -30,11 +30,11 @@ import torch
 import logging
 import carb
 import numpy as np
-from omni.isaac.cloner import GridCloner
-from omni.isaac.core.simulation_context import SimulationContext
-from omni.isaac.core.utils import prims as prim_utils, stage as stage_utils
-from omni.isaac.core.utils.extensions import enable_extension
-from omni.isaac.core.utils.viewports import set_camera_view
+from isaacsim.core.cloner import GridCloner  # type:ignore
+from isaacsim.core.api.simulation_context import SimulationContext  # type:ignore
+from isaacsim.core.utils import prims as prim_utils, stage as stage_utils  # type:ignore
+from isaacsim.core.utils.extensions import enable_extension  # type:ignore
+from isaacsim.core.utils.viewports import set_camera_view  # type:ignore
 
 from tensordict.tensordict import TensorDict, TensorDictBase
 from torchrl.data import CompositeSpec, TensorSpec, DiscreteTensorSpec
@@ -43,7 +43,7 @@ from torchrl.envs import EnvBase
 from marinegym.robots.robot import RobotBase
 from marinegym.utils.torchrl import AgentSpec
 
-from omni.isaac.debug_draw import _debug_draw
+from isaacsim.util.debug_draw import _debug_draw  # type:ignore
 
 class DebugDraw:
     def __init__(self):

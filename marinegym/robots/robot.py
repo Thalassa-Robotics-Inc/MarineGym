@@ -1,4 +1,4 @@
-clear# MIT License
+# MIT License
 #
 # Copyright (c) 2023 Botian Xu, Tsinghua University
 #
@@ -26,13 +26,13 @@ import os.path as osp
 from contextlib import contextmanager
 from typing import Dict, Sequence, Type
 
-import omni.isaac.core.utils.prims as prim_utils
-import omni.isaac.core.utils.torch as torch_utils
+import isaacsim.core.utils.prims as prim_utils  # type:ignore
+import isaacsim.core.utils.torch as torch_utils  # type:ignore
 
 import omni.timeline
 import torch
 from marinegym.views import ArticulationView, RigidPrimView
-from omni.isaac.core.simulation_context import SimulationContext
+from isaacsim.core.api.simulation_context import SimulationContext  # type:ignore
 from torchrl.data import TensorSpec
 
 import marinegym.utils.kit as kit_utils

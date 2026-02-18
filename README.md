@@ -25,6 +25,15 @@
 >
 > 📮 **Email**: zjuoyh@163.com
 
+## Documentation (this repo)
+
+Full in-repo documentation lives in **`docs/`**:
+
+- **00-Overview.md** — Doc index, project files quick reference, and references to Test_AUV/docs for Isaac Sim 5 fixes.
+- **01–12** — Package structure, robots, UnderwaterVehicle, views, actuators, controllers, environments, scripts/training, assets, hydrodynamics, installation/fixes, project files index.
+
+Use it to understand every component (spawn, initialize, apply_action, get_state, hydro, T200, LeePositionController, Hover, train.py, BlueROV.yaml) and to integrate MarineGym with another project (e.g. Test_AUV).
+
 ## Installation
 
 To install MarineGym, we recommend reading one of the following guides:

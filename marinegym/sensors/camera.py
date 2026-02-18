@@ -23,14 +23,14 @@ import math
 
 from typing import Optional, Union, Sequence
 
-import omni.isaac.core.utils.prims as prim_utils
-import omni.isaac.core.utils.stage as stage_utils
+import isaacsim.core.utils.prims as prim_utils  # type:ignore
+import isaacsim.core.utils.stage as stage_utils  # type:ignore
 import omni.replicator.core as rep
 
 import torch
 import warp as wp
-from omni.isaac.core.prims import XFormPrim
-from omni.isaac.core.simulation_context import SimulationContext
+from isaacsim.core.prims import SingleXFormPrim as XFormPrim  # type:ignore
+from isaacsim.core.api.simulation_context import SimulationContext  # type:ignore
 from pxr import Gf, Sdf, UsdGeom
 from tensordict import TensorDict
 

@@ -36,7 +36,7 @@ def init_simulation_app(cfg):
     simulation_app = SimulationApp(config, experience=app_experience)
     
     if config['enable_livestream']:
-        from omni.isaac.core.utils.extensions import enable_extension
+        from isaacsim.core.utils.extensions import enable_extension  # type:ignore
         simulation_app.set_setting("/app/window/drawMouse", True)
         simulation_app.set_setting("/app/livestream/proto", "ws")
         simulation_app.set_setting("/app/livestream/websocket/framerate_limit", 120)

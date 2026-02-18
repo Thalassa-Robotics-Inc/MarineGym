@@ -1,7 +1,7 @@
 import torch
 import torch.distributions as D
 
-import omni.isaac.core.utils.prims as prim_utils
+import isaacsim.core.utils.prims as prim_utils  # type:ignore
 
 from marinegym.envs.isaac_env import AgentSpec, IsaacEnv
 from marinegym.views import ArticulationView, RigidPrimView
@@ -74,7 +74,7 @@ class Hover(IsaacEnv):
 
     def _design_scene(self):
         import marinegym.utils.kit as kit_utils
-        import omni.isaac.core.utils.prims as prim_utils
+        import isaacsim.core.utils.prims as prim_utils  # type:ignore
 
         drone_model_cfg = self.cfg.task.drone_model
         self.drone, self.controller = UnderwaterVehicle.make(
